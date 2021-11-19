@@ -1,0 +1,77 @@
+<html layout:decorate="~{modelo}">
+<head>
+    <meta charset="UTF-8" />
+    <title>TADS DSW</title>
+</head>
+<body>
+    <main class="container" layout:fragment="conteudo">
+        <div class="row">
+ 
+                <h1 th:if="${usuarios.id == null}">Inclusão de Usuario</h1>
+                <h1 th:if="${usuarios.id != null}">Alteração de Usuario</h1>             
+   
+                
+                <form th:action="@{/user/salvar}" method="post" th:object="${usuarios}">
+                                <input type="hidden" th:if="*{id != null}" th:field="*{id}" />
+                    <div class="form-group row">
+                    
+                        <label for="txtNome" class="col-sm-2 col-form-label">Username </label>
+                        
+                        <div class="col-sm-10">
+                            <input type="text" name="username" class="form-control" th:classappend="${#fields.hasErrors('username')}? is-invalid" id="txtNome" th:field="*{username}">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">
+                                Digite um username.
+                            </div>
+                        </div>
+                        
+                        <label for="txtNomeCompleto" class="col-sm-2 col-form-label">Nome completo</label>
+                        
+                        <div class="col-sm-10">
+                            <input type="text" name="nomeCompleto" class="form-control" th:classappend="${#fields.hasErrors('nomeCompleto')}? is-invalid" id="txtNomeCompleto"  th:field="*{nomeCompleto}">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('nomeCompleto')}" th:errors="*nomeCompleto}">
+                                Nome Completo.
+                            </div>
+                        </div>
+                        
+                         <label for="txtSenha" class="col-sm-2 col-form-label">Senha</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="senha" class="form-control" th:classappend="${#fields.hasErrors('senha')}? is-invalid" id="txtSenha"  th:field="*{senha}">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('senha')}" th:errors="*senha}">
+                                senha
+                            </div>
+                        </div>
+                        
+                        <label class="col-form-label col-sm-2 pt-0">Disponível</label>
+                            <div class="col-sm-10">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="ativado" id="optDisponivelSim" value="true" th:field="*{ativado}">
+                                    <label class="form-check-label" for="optDisponivelSim">
+                                        Sim
+                                            </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="ativado" id="optDisponivelNao" value="false" th:field="*{ativado}">
+                                    <label class="form-check-label" for="optDisponivelNao">
+                                        Não
+                                    </label>
+                                </div>
+                            </div>
+                            
+                         
+                    </div>
+                       <div class="row">
+                        <div class="col-md-3 offset-md-3">
+                            <a th:href="@{/user/lista}" role="button" class="btn btn-block btn-outline-dark">Cancelar</a>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-block btn-success">Enviar</button>
+                        </div>
+                    </div>
+            
+                       </form>
+                    </div>
+               
+ 
+    </main>
+</body>
+</html>

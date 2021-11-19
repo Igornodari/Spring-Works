@@ -1,0 +1,1 @@
+Arquivo dummy para manter o diretório templates no Github
